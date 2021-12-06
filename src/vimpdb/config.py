@@ -148,7 +148,7 @@ def write_to_file(filename, config):
 
 def getCommandOutputPosix(parts):
     try:
-        p = subprocess.Popen(parts, stdout=subprocess.PIPE)
+        p = subprocess.Popen(parts, stdout=subprocess.PIPE, text=True)
         return_code = p.wait()
     except OSError as e:
         message = 'When trying to run "%s" : %s' % (" ".join(parts), e.args[1])
