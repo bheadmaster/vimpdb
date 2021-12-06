@@ -1,7 +1,7 @@
 import pdb
 from pdb import Pdb
 import sys
-import StringIO
+import io
 import pprint
 from vimpdb import proxy
 from vimpdb import config
@@ -129,7 +129,7 @@ class VimPdb(Pdb, Switcher):
         self.to_vim.displayLocals(watches)
 
     def formatLocals(self):
-        stream = StringIO.StringIO()
+        stream = io.StringIO()
         locals = self.curframe.f_locals
         keys = locals.keys()
         keys.sort()
@@ -145,7 +145,7 @@ class VimPdb(Pdb, Switcher):
     # stdout captures to send back to Vim
     def capture_sys_stdout(self):
         self.stdout = sys.stdout
-        sys.stdout = StringIO.StringIO()
+        sys.stdout = io.StringIO()
         self.capturing = True
 
     def stop_capture_sys_stdout(self):
@@ -157,7 +157,7 @@ class VimPdb(Pdb, Switcher):
     # stdout captures to send back to Vim
     def capture_self_stdout(self):
         self.initial_stdout = self.stdout
-        self.stdout = StringIO.StringIO()
+        self.stdout = io.StringIO()
         self.capturing = True
 
     def stop_capture_self_stdout(self):
