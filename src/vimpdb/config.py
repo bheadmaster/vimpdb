@@ -85,7 +85,7 @@ def get_configuration(filename=RCNAME):
         mustWrite = False
         try:
             config = read_from_file(filename, Config)
-        except errors.BadRCFile, e:
+        except errors.BadRCFile as e:
             try:
                 config_4_0 = bbbconfig.read_from_file_4_0(filename, Config)
             except errors.BadRCFile:
@@ -150,7 +150,7 @@ def getCommandOutputPosix(parts):
     try:
         p = subprocess.Popen(parts, stdout=subprocess.PIPE)
         return_code = p.wait()
-    except OSError, e:
+    except OSError as e:
         message = 'When trying to run "%s" : %s' % (" ".join(parts), e.args[1])
         raise OSError(e.args[0], message)
     if return_code:
@@ -191,14 +191,14 @@ class DetectorBase(object):
     def _checkConfiguration(self):
         try:
             self.check_clientserver_support(CLIENT)
-        except ValueError, e:
+        except ValueError as e:
             print e.args[0]
             self.query_script(CLIENT)
             return False
         try:
             self.check_python_support()
         #XXX catch WindowsError
-        except OSError, e:
+        except OSError as e:
             print e.args[1]
             server_script = self.scripts[SERVER]
             if server_script == DEFAULT_SERVER_SCRIPT:
@@ -209,19 +209,19 @@ class DetectorBase(object):
                     "(%s)." % server_script)
             self.query_script(SERVER)
             return False
-        except ValueError, e:
+        except ValueError as e:
             print e.args[0]
             self.query_script(SERVER)
             return False
         try:
             self.check_server_clientserver_support()
-        except ValueError, e:
+        except ValueError as e:
             print e.args[0]
             self.query_script(SERVER)
             return False
         try:
             self.check_serverlist()
-        except ValueError, e:
+        except ValueError as e:
             print e.args[0]
             self.query_servername()
             return False
@@ -240,11 +240,11 @@ class DetectorBase(object):
         command = self.build_command(CLIENT, '--serverlist')
         try:
             return self.commandParser(command)
-        except errors.ReturnCodeError, e:
+        except errors.ReturnCodeError as e:
             return_code = e.args[0]
             command = e.args[1]
             raise ValueError(RETURN_CODE % (command, return_code))
-        except OSError, e:
+        except OSError as e:
             raise ValueError(str(e))
 
     def serverAvailable(self):
@@ -260,11 +260,11 @@ class DetectorBase(object):
         if not self.serverAvailable():
             try:
                 self.launch_vim_server()
-            except errors.ReturnCodeError, e:
+            except errors.ReturnCodeError as e:
                 return_code = e.args[0]
                 command = e.args[1]
                 raise ValueError(RETURN_CODE % (command, return_code))
-            except OSError, e:
+            except OSError as e:
                 raise ValueError(str(e))
         timeout = 0.0
         INCREMENT = 0.1
@@ -284,11 +284,11 @@ class DetectorBase(object):
         try:
             command = self.build_command(script_type, '--version')
             return self.commandParser(command)
-        except errors.ReturnCodeError, e:
+        except errors.ReturnCodeError as e:
             return_code = e.args[0]
             command = e.args[1]
             raise ValueError(RETURN_CODE % (command, return_code))
-        except OSError, e:
+        except OSError as e:
             raise ValueError(str(e))
 
     def check_clientserver_support(self, script_type):
