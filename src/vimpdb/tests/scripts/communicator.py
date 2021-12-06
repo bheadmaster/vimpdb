@@ -9,6 +9,6 @@ parser.add_option('--remote-send', dest="command")
 parser.parse_args(sys.argv)
 
 if hasattr(parser.values, 'expr'):
-    print parser.values.expr, parser.values.server_name
+    print(parser.values.expr, parser.values.server_name)
 if hasattr(parser.values, 'command'):
-    print parser.values.command, parser.values.server_name
+    print(parser.values.command, parser.values.server_name)

@@ -1,1 +1,1 @@
-print "VIM"
+print("VIM")

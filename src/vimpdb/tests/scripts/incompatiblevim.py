@@ -1,1 +1,1 @@
-print "-clientserver -python"
+print("-clientserver -python")

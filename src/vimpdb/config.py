@@ -192,37 +192,37 @@ class DetectorBase(object):
         try:
             self.check_clientserver_support(CLIENT)
         except ValueError as e:
-            print e.args[0]
+            print(e.args[0])
             self.query_script(CLIENT)
             return False
         try:
             self.check_python_support()
         #XXX catch WindowsError
         except OSError as e:
-            print e.args[1]
+            print(e.args[1])
             server_script = self.scripts[SERVER]
             if server_script == DEFAULT_SERVER_SCRIPT:
-                print ("with the default VIM server script (%s)."
+                print("with the default VIM server script (%s)."
                     % server_script)
             else:
-                print ("with the VIM server script from the configuration "
+                print("with the VIM server script from the configuration "
                     "(%s)." % server_script)
             self.query_script(SERVER)
             return False
         except ValueError as e:
-            print e.args[0]
+            print(e.args[0])
             self.query_script(SERVER)
             return False
         try:
             self.check_server_clientserver_support()
         except ValueError as e:
-            print e.args[0]
+            print(e.args[0])
             self.query_script(SERVER)
             return False
         try:
             self.check_serverlist()
         except ValueError as e:
-            print e.args[0]
+            print(e.args[0])
             self.query_servername()
             return False
         return True

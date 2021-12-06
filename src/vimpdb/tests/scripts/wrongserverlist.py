@@ -1,1 +1,1 @@
-print "WRONG"
+print("WRONG")
