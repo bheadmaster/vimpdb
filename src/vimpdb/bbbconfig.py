@@ -1,11 +1,11 @@
 import os
-import ConfigParser
+import configparser
 
 from vimpdb import errors
 
 
 def read_from_file_4_0(filename, klass):
-    parser = ConfigParser.RawConfigParser()
+    parser = configparser.RawConfigParser()
     parser.read(filename)
     if not parser.has_section('vimpdb'):
         raise errors.BadRCFile('[vimpdb] section is missing in "%s"' %

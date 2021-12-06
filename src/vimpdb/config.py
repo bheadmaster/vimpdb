@@ -3,7 +3,7 @@ import os
 import os.path
 import logging
 import time
-import ConfigParser
+import configparser
 import subprocess
 
 from vimpdb import bbbconfig
@@ -107,7 +107,7 @@ def getRawConfiguration(filename=RCNAME):
 
 
 def read_from_file(filename, klass):
-    parser = ConfigParser.RawConfigParser()
+    parser = configparser.RawConfigParser()
     parser.read(filename)
     if not parser.has_section('vimpdb'):
         raise errors.BadRCFile('[vimpdb] section is missing in "%s"' %
@@ -135,7 +135,7 @@ def read_option(parser, name, error_msg):
 
 
 def write_to_file(filename, config):
-    parser = ConfigParser.RawConfigParser()
+    parser = configparser.RawConfigParser()
     parser.add_section('vimpdb')
     parser.set('vimpdb', 'vim_client_script', config.scripts[CLIENT])
     parser.set('vimpdb', 'vim_server_script', config.scripts[SERVER])
