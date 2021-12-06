@@ -313,7 +313,7 @@ class DetectorBase(object):
             type = 'server'
         question = ("Input another VIM %s script (leave empty to abort): "
             % type)
-        answer = raw_input(question)
+        answer = input(question)
         if answer == '':
             raise errors.BrokenConfiguration
         else:
@@ -321,7 +321,7 @@ class DetectorBase(object):
 
     def query_servername(self):
         question = "Input another server name (leave empty to abort): "
-        answer = raw_input(question)
+        answer = input(question)
         if answer == '':
             raise errors.BrokenConfiguration
         else:
